@@ -1,14 +1,30 @@
 import turtle
 import board
+import math
 
-turtle_spots_taken = []
+x_turtles = []
+o_turtles = []
 
 shape = "x"
+
+def check_for_win():
+    x_x_score = 0
+    x_y_score = 0
+
+    for turtle in x_turtles:
+        x_x_score += turtle.xcor()
+        x_y_score += turtle.ycor()
+
+    if len(x_turtles) >= 3:
+        if (x_x_score == 0 and   (abs(x_y_score / 150) == 1 or abs(x_y_score / 150) == 0) ) or x_y_score == 0:
+            print("x  victory")
+            return
+
 
 def handle_game(turtles_list):
     def on_click(x, y):
         global shape
-        
+
         print("on click")
         print(x, y)
         correct_turtle = None
@@ -20,14 +36,16 @@ def handle_game(turtles_list):
                     break
 
         correct_turtle.hideturtle()
-        turtle_spots_taken.append(correct_turtle)
         if shape == "x":
             board.draw_x(correct_turtle.xcor(), correct_turtle.ycor())
+            x_turtles.append(correct_turtle)
             shape = "o"
         else:
             board.draw_o(correct_turtle.xcor(), correct_turtle.ycor())
+            o_turtles.append(correct_turtle)
             shape = "x"
 
+        check_for_win()
         pass
 
     for turtle in turtles_list:
