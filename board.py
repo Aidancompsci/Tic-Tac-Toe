@@ -15,13 +15,13 @@ def create_board():
     board_turtle.goto(-25, -75)
     #right line
     goto_without_pen(25, 75)
-    board_turtle.goto(-25, -75)
+    board_turtle.goto(25, -75)
     #top line
     goto_without_pen(-75, 25)
     board_turtle.goto(75, 25)
     #bottom line
     goto_without_pen(-75, -25)
-    board_turtle.goto(75, 25)
+    board_turtle.goto(75, -25)
 
 
     pass
